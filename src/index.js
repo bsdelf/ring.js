@@ -1,8 +1,8 @@
-const assert = require('assert');
-
 class Ring {
     constructor(data) {
-        assert(data.length > 0);
+        if (data.length < 2) {
+            throw new Error('length should >= 2');
+        }
         this._data = data;
         this._head = 0;
         this._tail = 0;
@@ -12,7 +12,7 @@ class Ring {
 
     push(val) {
         while (this.full) {
-            let d = this.shift();
+            this.shift();
         }
         this._data[this._tail] = val;
         this._tail = (this._tail + 1) % this.length;
@@ -28,9 +28,36 @@ class Ring {
     }
 
     unshift(val) {
+        while (this.full) {
+            this.pop();
+        }
+        let head = (this._head + this.length - 1) % this.length;
+        this._data[head] = val;
+        this._head = head;
     }
 
     pop() {
+        if (this.empty) {
+            return;
+        }
+        let tail = (this._tail + this.length - 1) % this.length;
+        let val = this._data[tail];
+        this._tail = tail;
+        return val;
+    }
+
+    clear() {
+        this._head = this._tail = 0;
+    }
+
+    get(i) {
+        let idx = (this._head + i) % this.length;
+        return this._data[idx];
+    }
+
+    set(i, val) {
+        let idx = (this._head + i) % this.length;
+        this._data[idx] = val;
     }
 
     /////////////////////////////////////////////////////////////////
