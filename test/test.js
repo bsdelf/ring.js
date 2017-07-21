@@ -3,6 +3,12 @@ const Ring = require('../src/');
 
 describe('Ring', () => {
     describe('#constructor()', () => {
+        it('should throw without length', () => {
+            assert.throws(() => {
+                new Ring();
+            });
+        });
+
         it('should throw when length < 1', () => {
             assert.throws(() => {
                 new Ring(0);
@@ -11,7 +17,7 @@ describe('Ring', () => {
 
         let ring = new Ring(1);
 
-        it('should is empty', () => {
+        it('should be empty', () => {
             assert.isTrue(ring.empty);
         });
 
