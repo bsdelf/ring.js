@@ -18,7 +18,7 @@ class Ring {
             this.shift();
         }
         this._data[this._tail] = val;
-        this._tail = (this._tail + 1) % this.length;
+        this._tail = (this._tail + 1) % this._data.length;
     }
 
     shift() {
@@ -26,7 +26,7 @@ class Ring {
             return;
         }
         let val = this._data[this._head];
-        this._head = (this._head + 1) % this.length;
+        this._head = (this._head + 1) % this._data.length;
         return val;
     }
 
@@ -34,7 +34,7 @@ class Ring {
         while (this.full) {
             this.pop();
         }
-        let head = (this._head + this.length - 1) % this.length;
+        let head = (this._head + this._data.length - 1) % this._data.length;
         this._data[head] = val;
         this._head = head;
     }
@@ -43,7 +43,7 @@ class Ring {
         if (this.empty) {
             return;
         }
-        let tail = (this._tail + this.length - 1) % this.length;
+        let tail = (this._tail + this._data.length - 1) % this._data.length;
         let val = this._data[tail];
         this._tail = tail;
         return val;
@@ -54,19 +54,19 @@ class Ring {
     }
 
     get(i) {
-        let idx = (this._head + i) % this.length;
+        let idx = (this._head + i) % this._data.length;
         return this._data[idx];
     }
 
     set(i, val) {
-        let idx = (this._head + i) % this.length;
+        let idx = (this._head + i) % this._data.length;
         this._data[idx] = val;
     }
 
     /////////////////////////////////////////////////////////////////
 
     get full() {
-        return this._tail === ((this._head + this.length - 1) % this.length);
+        return this._tail === ((this._head + this._data.length - 1) % this._data.length);
     }
 
     get empty() {
@@ -77,16 +77,16 @@ class Ring {
         if (this._tail >= this._head) {
             return this._tail - this._head;
         } else {
-            return this._tail + this.length - this._head;
+            return this._tail + this._data.length - this._head;
         }
     }
 
     get free() {
-        return this.length - this.used - 1;
+        return this._data.length - this.used - 1;
     }
 
     get length() {
-        return this._data.length;
+        return this._data.length - 1;
     }
 
     /////////////////////////////////////////////////////////////////
