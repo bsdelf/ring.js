@@ -7,6 +7,7 @@ class Ring {
             ctor = Array;
         }
         this._data = new ctor(length + 1);
+        this._ctor = ctor;
         this._head = 0;
         this._tail = 0;
     }
@@ -108,7 +109,7 @@ class Ring {
     /////////////////////////////////////////////////////////////////
 
     toArray() {
-        let data = new Array(this.used);
+        let data = new this._ctor(this.used);
         for (let i = 0; i < this.used; ++i) {
             let pos = (this._head + i) % this.length;
             data[i] = this._data[pos];

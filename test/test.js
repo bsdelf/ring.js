@@ -134,9 +134,23 @@ describe('Ring', () => {
     });
 
     describe('#toArray()', () => {
-        it('should to array', () => {
+        it('should to Array', () => {
             let vals = [1,2,3,4];
             let ring = new Ring(vals.length);
+            vals.forEach(val => {
+                ring.push(val);
+            });
+            assert.deepEqual(vals, ring.toArray());
+        });
+
+        it('should to Uint8Array', () => {
+            let vals = new Uint8Array(4);
+            vals[0] = 1;
+            vals[1] = 2;
+            vals[2] = 3;
+            vals[3] = 4;
+
+            let ring = new Ring(vals.length, Uint8Array);
             vals.forEach(val => {
                 ring.push(val);
             });
