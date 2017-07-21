@@ -1,9 +1,12 @@
 class Ring {
-    constructor(data) {
-        if (data.length < 2) {
-            throw new Error('length should >= 2');
+    constructor(length, ctor) {
+        if (length < 1) {
+            throw new Error('length should > 0');
         }
-        this._data = data;
+        if (!ctor) {
+            ctor = Array;
+        }
+        this._data = new ctor(length + 1);
         this._head = 0;
         this._tail = 0;
     }

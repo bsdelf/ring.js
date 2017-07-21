@@ -3,16 +3,13 @@ const Ring = require('../src/');
 
 describe('Ring', () => {
     describe('#constructor()', () => {
-        it('should throw when length < 2', () => {
+        it('should throw when length < 1', () => {
             assert.throws(() => {
-                new Ring([]);
-            });
-            assert.throws(() => {
-                new Ring([,]);
+                new Ring(0);
             });
         });
 
-        let ring = new Ring([,,]);
+        let ring = new Ring(1);
 
         it('should is empty', () => {
             assert.isTrue(ring.empty);
@@ -33,14 +30,14 @@ describe('Ring', () => {
 
     describe('#push()', () => {
         it('should push elements', () => {
-            let ring = new Ring(Array(1 + 1));
+            let ring = new Ring(1);
             ring.push(0);
             assert.equal(0, ring.get(0));
         });
 
         it('should push circular', () => {
             let n = 3;
-            let ring = new Ring(Array(n + 1));
+            let ring = new Ring(n);
 
             for (let i = 0; i < n * 2; ++i) {
                 ring.push(i);
@@ -51,14 +48,14 @@ describe('Ring', () => {
 
     describe('#unshift()', () => {
         it('should unshift elements', () => {
-            let ring = new Ring(Array(1 + 1));
+            let ring = new Ring(1);
             ring.unshift(0);
             assert.equal(0, ring.get(0));
         });
 
         it('should unshift circular', () => {
             let n = 3;
-            let ring = new Ring(Array(n + 1));
+            let ring = new Ring(n);
 
             for (let i = 0; i < n * 2; ++i) {
                 ring.unshift(i);
@@ -69,7 +66,7 @@ describe('Ring', () => {
 
     describe('#pop()', () => {
         let n = 10;
-        let ring = new Ring(Array(n + 1));
+        let ring = new Ring(n);
 
         it('should pop elements', () => {
             for (let i = 0; i < n; ++i) {
@@ -88,7 +85,7 @@ describe('Ring', () => {
 
     describe('#shift()', () => {
         let n = 10;
-        let ring = new Ring(Array(n + 1));
+        let ring = new Ring(n);
 
         it('should shift elements', () => {
             for (let i = 0; i < n; ++i) {
@@ -107,7 +104,7 @@ describe('Ring', () => {
 
     describe('#clear()', () => {
         it('should clear elements', () => {
-            let ring = new Ring(Array(1 + 1));
+            let ring = new Ring(1);
 
             ring.push(0);
             assert.isFalse(ring.empty);
@@ -133,7 +130,7 @@ describe('Ring', () => {
     describe('#toArray()', () => {
         it('should to array', () => {
             let vals = [1,2,3,4];
-            let ring = new Ring(Array(vals.length + 1));
+            let ring = new Ring(vals.length);
             vals.forEach(val => {
                 ring.push(val);
             });
