@@ -1,12 +1,12 @@
 class Ring {
-    constructor(length, ctor) {
-        if (length < 1) {
-            throw new Error('length should > 0');
+    constructor(capacity, ctor) {
+        if (capacity < 1) {
+            throw new Error('capacity should > 0');
         }
         if (!ctor) {
             ctor = Array;
         }
-        this._data = new ctor(length + 1);
+        this._data = new ctor(capacity + 1);
         this._ctor = ctor;
         this._head = 0;
         this._tail = 0;
@@ -86,7 +86,7 @@ class Ring {
         return this._data.length - this.used - 1;
     }
 
-    get length() {
+    get capacity() {
         return this._data.length - 1;
     }
 
@@ -111,7 +111,7 @@ class Ring {
     toArray() {
         let data = new this._ctor(this.used);
         for (let i = 0; i < this.used; ++i) {
-            let pos = (this._head + i) % this.length;
+            let pos = (this._head + i) % this.capacity;
             data[i] = this._data[pos];
         }
         return data;
