@@ -156,5 +156,14 @@ describe('Ring', () => {
             });
             assert.deepEqual(vals, ring.toArray());
         });
+
+        it('should be circular', () => {
+            let vals = [1,2,3,4,5,6,7,8,9,10];
+            let ring = new Ring(vals.length / 2);
+            vals.forEach(val => {
+                ring.push(val);
+            });
+            assert.deepEqual(vals.slice(vals.length / 2), ring.toArray());
+        });
     });
 });

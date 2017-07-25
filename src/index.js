@@ -111,7 +111,7 @@ class Ring {
     toArray() {
         let data = new this._ctor(this.used);
         for (let i = 0; i < this.used; ++i) {
-            let pos = (this._head + i) % this.capacity;
+            let pos = (this._head + i) % this._data.length;
             data[i] = this._data[pos];
         }
         return data;
