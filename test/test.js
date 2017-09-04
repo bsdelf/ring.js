@@ -146,7 +146,9 @@ describe('Ring', () => {
                 assert.equal(i + 1, ring.lowerBound(0, count, i + 5));
             }
 
-            assert.equal(count, ring.lowerBound(count));
+            assert.equal(0, ring.lowerBound(0, count, -1));
+
+            assert.equal(count, ring.lowerBound(0, count, count + 5));
         });
     });
 
