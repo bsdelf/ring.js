@@ -92,6 +92,23 @@ class Ring {
 
     /////////////////////////////////////////////////////////////////
 
+    lowerBound(first, last, value, comp = (a, b) => a - b > 0 ? false : true) {
+        let count = last - first;
+
+        while (count > 0) {
+            let step = count >> 1;
+            let it = first + step;
+            if (comp(this.get(it), value)) {
+                first = it + 1;
+                count -= step + 1;
+            } else {
+                count = step;
+            }
+        }
+
+        return first;
+    }
+
     /*
     forEach() {
     }

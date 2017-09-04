@@ -133,6 +133,23 @@ describe('Ring', () => {
         };
     });
 
+    describe('#lowerBound()', () => {
+        it('should get lower bound', () => {
+            let count = 10;
+            let ring = new Ring(count);
+
+            for (let i = 0; i < count * 2 - 5; ++i) {
+                ring.push(i);
+            }
+
+            for (let i = 0; i < count; ++i) {
+                assert.equal(i + 1, ring.lowerBound(0, count, i + 5));
+            }
+
+            assert.equal(count, ring.lowerBound(count));
+        });
+    });
+
     describe('#toArray()', () => {
         it('should to Array', () => {
             let vals = [1,2,3,4];
