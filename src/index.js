@@ -92,7 +92,7 @@ class Ring {
 
     /////////////////////////////////////////////////////////////////
 
-    lowerBound(first, last, value, comp = (a, b) => a - b > 0 ? false : true) {
+    lowerBound(first, last, value, comp = (a, b) => a - b <= 0) {
         let count = last - first;
 
         while (count > 0) {
