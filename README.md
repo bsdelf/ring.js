@@ -57,3 +57,7 @@ new Ring(capacity, Uint8Array)
 - `Ring.prototype.toArray()`
 
     Returns a newly created array with all elements of a ring.
+
+- `Ring.prototype.lowerBound(first, last, value[, comp])`
+
+    Returns the first index at which a given element in the range [first, last) that is not less than (i.e. greater or equal to) value, or last if no such element is found.
